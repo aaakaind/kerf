@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- KERF for Android. SPDX-License-Identifier: AGPL-3.0-or-later -->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="ca.akaind.kerf">
+    <!-- Declared so the WebView behaves the same on every Android version. KERF itself refuses every request
+         that is not one of its own bundled files (see MainActivity.shouldInterceptRequest). -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <application
+        android:label="@string/app_name"
+        android:icon="@mipmap/ic_launcher"
+        android:roundIcon="@mipmap/ic_launcher"
+        android:theme="@style/Kerf"
+        android:largeHeap="true"
+        android:hardwareAccelerated="true"
+        android:allowBackup="true"
+        android:fullBackupContent="@xml/backup"
+        android:dataExtractionRules="@xml/extraction"
+        android:enableOnBackInvokedCallback="true"
+        android:supportsRtl="true">
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:launchMode="singleTask"
+            android:windowSoftInputMode="adjustResize"
+            android:configChanges="orientation|screenSize|smallestScreenSize|screenLayout|keyboard|keyboardHidden|navigation|uiMode|density|fontScale|layoutDirection|locale">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+</manifest>

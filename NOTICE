@@ -1,0 +1,75 @@
+KERF
+Copyright (C) 2026 AKA IND Technologies Inc. (AI² Lab)
+
+This program is free software: you can redistribute it and/or modify it under the terms of
+the GNU Affero General Public License as published by the Free Software Foundation, either
+version 3 of the License, or (at your option) any later version. See LICENSE.
+
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+------------------------------------------------------------------------------------------
+Third-party components
+------------------------------------------------------------------------------------------
+
+The built app (dist/) bundles the components below. Their full licence texts and copyright
+notices are embedded at the end of dist/index.html and shown in the app under
+Pledge -> Licences. Each package's own LICENSE file is in node_modules after `npm install`.
+
+Component                     Licence            Use in KERF
+three.js                      MIT                3D viewport, rendering, GLB/STL/OBJ import and export
+three-mesh-bvh                MIT                spatial index for picking and mesh booleans
+three-bvh-csg                 MIT                fallback mesh booleans
+three-gpu-pathtracer          MIT                path-traced renders (Mesh and CAD)
+manifold-3d (Manifold)        Apache-2.0         exact mesh booleans — separate file manifold.wasm
+paper.js                      MIT                curve-accurate vector booleans, path simplification
+paperjs-offset                MIT                offset path, outline stroke
+imagetracerjs                 Unlicense          image trace
+dxf-parser                    MIT                DXF import
+@tarikjabiri/dxf              MIT                DXF export
+@pdf-lib/fontkit              MIT                font shaping, kerning and subsetting for PDF export
+  (incl. pako: MIT and Zlib)
+hyphen                        ISC                TeX hyphenation patterns (en-US)
+pdfjs-dist (PDF.js)           Apache-2.0         rendering placed PDF pages — worker file pdf.worker.min.mjs
+replicad                      MIT                B-rep modelling API over OpenCascade
+replicad-opencascadejs        LGPL-2.1           OpenCascade Technology compiled to WebAssembly — occt.wasm.gz
+@salusoft89/planegcs          LGPL-2.0-or-later  FreeCAD's PlaneGCS sketch solver — planegcs.wasm
+  (PlaneGCS itself: LGPL-2.1-or-later, FreeCAD project)
+rhino3dm                      MIT                Rhino .3dm import — rhino3dm.wasm
+loglevel                      MIT                (via rhino3dm / pathtracer)
+opentype.js                   MIT                font parsing (via replicad)
+tiny-inflate                  MIT                (via opentype.js)
+string.prototype.codepointat  MIT                (via opentype.js)
+flatbush, flatqueue           ISC                spatial index (via replicad)
+Jost (Fontsource)             OFL-1.1            display typeface
+IBM Plex Sans, IBM Plex Mono  OFL-1.1            text and label typefaces
+  (Fontsource)
+
+Desktop builds only: Electron (MIT), which contains Chromium (BSD-3-Clause and others) and
+FFmpeg (LGPL-2.1); their notices ship inside the package as LICENSES.chromium.html.
+
+Build tools, not shipped: esbuild (MIT), wawoff2 (MIT), electron-builder (MIT), resedit (MIT).
+
+The LGPL engines
+  OpenCascade and PlaneGCS are shipped as separate files (occt.wasm.gz, planegcs.wasm) and loaded
+  at run time, so you can swap in your own builds. PlaneGCS source: https://github.com/FreeCAD/FreeCAD
+  (src/Mod/Sketcher/App/planegcs) and https://github.com/Salusoft89/planegcs.
+  The OpenCascade kernel is shipped as a separate file, dist/occt.wasm.gz, loaded at run time.
+  You may replace it with your own build of replicad-opencascadejs. Source:
+  https://github.com/sgenoud/replicad (packages/replicad-opencascadejs) and
+  https://dev.opencascade.org. Open CASCADE Technology is licensed LGPL-2.1 with the
+  Open CASCADE exception.
+
+Fonts
+  Jost: Copyright 2020 The Jost Project Authors (https://github.com/indestructible-type/Jost).
+  IBM Plex: Copyright 2019 IBM Corp. Both under the SIL Open Font License 1.1, embedded
+  unmodified (Latin subsets, as packaged by Fontsource). For PDF embedding the build converts the
+  same WOFF2 files to TrueType (dist/fonts/*.ttf) without changing any glyph; exported PDFs carry
+  subsets of them, which the OFL permits.
+
+Names and marks
+  "KERF", "AKA IND", "AKAIND", "AI² Lab", the KERF block mark and the AKA mark (src/assets/
+  aka-mark.svg) identify the project and its publisher. The AGPL gives you the code, not the names
+  or marks: if you ship a modified version, please call it something else and remove the marks so
+  nobody mistakes it for an official release. "Rhino" and ".3dm" are used only to name a file
+  format KERF can read; KERF is not affiliated with Robert McNeel & Associates.

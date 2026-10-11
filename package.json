@@ -1,0 +1,40 @@
+{
+  "name": "kerf",
+  "version": "0.2.0",
+  "description": "KERF — open-source layout, vector, 3D and parametric CAD in one browser app. No account, no subscription, no telemetry.",
+  "license": "AGPL-3.0-or-later",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "dev": "node scripts/build.mjs --watch",
+    "serve": "node scripts/serve.mjs",
+    "test": "node scripts/build.mjs && python3 scripts/smoke_test.py"
+  },
+  "devDependencies": {
+    "@fontsource-variable/jost": "^5.3.0",
+    "@fontsource/ibm-plex-mono": "^5.3.0",
+    "@fontsource/ibm-plex-sans": "^5.3.0",
+    "@fontsource/jost": "^5.3.0",
+    "@pdf-lib/fontkit": "^1.1.1",
+    "@salusoft89/planegcs": "^1.3.0",
+    "@tarikjabiri/dxf": "^2.9.0",
+    "dxf-parser": "^1.1.2",
+    "esbuild": "^0.28.2",
+    "hyphen": "^1.14.1",
+    "imagetracerjs": "^1.2.6",
+    "manifold-3d": "^3.5.4",
+    "paper": "^0.12.18",
+    "paperjs-offset": "^2.2.1",
+    "pdf-lib": "^1.17.1",
+    "pdfjs-dist": "^6.4.299",
+    "replicad": "^1.1.0",
+    "replicad-opencascadejs": "^1.1.0",
+    "rhino3dm": "^8.35.0",
+    "three": "^0.186.1",
+    "three-bvh-csg": "^0.0.18",
+    "three-gpu-pathtracer": "^0.0.26",
+    "three-mesh-bvh": "^0.9.15",
+    "wawoff2": "^2.0.1"
+  }
+}

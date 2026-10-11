@@ -1,0 +1,101 @@
+{
+  "name": "kerf",
+  "productName": "KERF",
+  "version": "0.2.0",
+  "description": "KERF \u2014 open-source layout, vector, 3D and parametric CAD. No accounts, no subscriptions, no telemetry.",
+  "main": "main.js",
+  "license": "AGPL-3.0-or-later",
+  "author": {
+    "name": "AKA IND Technologies Inc."
+  },
+  "homepage": "https://github.com/aaakaind",
+  "private": true,
+  "scripts": {
+    "prepare-web": "node scripts/prepare.mjs",
+    "start": "npm run prepare-web && electron .",
+    "dist:linux": "npm run prepare-web && electron-builder --publish never --linux AppImage deb --x64",
+    "dist:win": "npm run prepare-web && electron-builder --publish never --win nsis portable zip --x64",
+    "dist": "npm run prepare-web && electron-builder --publish never --linux AppImage deb --win nsis portable zip --x64"
+  },
+  "devDependencies": {
+    "electron": "^44.7.0",
+    "electron-builder": "^26.15.3",
+    "resedit": "^2.0.3"
+  },
+  "build": {
+    "appId": "ca.akaind.kerf",
+    "productName": "KERF",
+    "copyright": "\u00a9 2026 AKA IND Technologies Inc. \u00b7 AI\u00b2 Lab \u00b7 AGPL-3.0-or-later",
+    "directories": {
+      "output": "release",
+      "buildResources": "build"
+    },
+    "files": [
+      "main.js",
+      "preload.js",
+      "web/**",
+      "build/icons/icon.ico",
+      "build/icons/icon-512.png",
+      "LICENSE",
+      "NOTICE"
+    ],
+    "asar": true,
+    "asarUnpack": [],
+    "artifactName": "KERF-${version}-${os}-${arch}.${ext}",
+    "afterPack": "scripts/after-pack.cjs",
+    "fileAssociations": [
+      {
+        "ext": "kerf",
+        "name": "KERF document",
+        "mimeType": "application/x-kerf"
+      }
+    ],
+    "linux": {
+      "icon": "build/icons/linux",
+      "category": "Graphics",
+      "synopsis": "Open-source layout, vector, 3D and CAD",
+      "maintainer": "AKA IND Technologies Inc.",
+      "vendor": "AKA IND Technologies Inc.",
+      "executableName": "kerf",
+      "desktop": {
+        "entry": {
+          "StartupWMClass": "KERF",
+          "Keywords": "design;layout;vector;cad;3d;"
+        }
+      },
+      "syncDesktopName": true
+    },
+    "deb": {
+      "depends": [
+        "libgtk-3-0",
+        "libnss3",
+        "libxss1",
+        "libxtst6",
+        "xdg-utils",
+        "libatspi2.0-0",
+        "libuuid1",
+        "libsecret-1-0"
+      ],
+      "packageCategory": "graphics"
+    },
+    "win": {
+      "icon": "build/icons/icon.ico",
+      "signAndEditExecutable": false,
+      "executableName": "KERF"
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true,
+      "installerIcon": "build/icons/icon.ico",
+      "uninstallerIcon": "build/icons/icon.ico",
+      "shortcutName": "KERF",
+      "deleteAppDataOnUninstall": false
+    },
+    "portable": {
+      "artifactName": "KERF-${version}-portable.exe"
+    },
+    "publish": null
+  },
+  "desktopName": "kerf.desktop"
+}
