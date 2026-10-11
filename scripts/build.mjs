@@ -120,7 +120,7 @@ const SOURCE_FILES = ['README.md', 'docs', 'LICENSE', 'NOTICE', 'PLEDGE.md', 'FO
 function walk(p) { return statSync(p).isDirectory() ? readdirSync(p).sort().flatMap(n => walk(join(p, n))) : [p]; }
 function sourceZip() {
   const files = SOURCE_FILES.map(f => join(root, f)).filter(existsSync).flatMap(walk).filter(f => !/(^|[\\/])(\.DS_Store|node_modules|__pycache__)([\\/]|$)/.test(f))
-    .filter(f => !/(^|[\\/])(desktop[\\/](web|release)|android[\\/]out)([\\/]|$)|\.(jks|keystore|p12)$/.test(relative(root, f)));
+    .filter(f => !/(^|[\\/])(desktop[\\/](web|release)|android[\\/](out|prebuilt))([\\/]|$)|\.(jks|keystore|p12|apk|idsig)$/.test(relative(root, f)));
   const parts = [], central = []; let offset = 0;
   const dosTime = 0, dosDate = ((2026 - 1980) << 9) | (1 << 5) | 1; // fixed timestamp → reproducible archive
   for (const f of files) {
