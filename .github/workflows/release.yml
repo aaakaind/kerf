@@ -33,9 +33,9 @@ jobs:
           V=$(node -p "require('./package.json').version")
           cd dist && zip -q -r "../kerf-$V-web.zip" index.html occt.wasm.gz planegcs.wasm manifold.wasm rhino3dm.wasm pdf.worker.min.mjs fonts "kerf-$V-source.zip"
           cp "kerf-$V-source.zip" ..
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with: { name: dist, path: dist/, retention-days: 3 }
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with: { name: pkg-web, path: 'kerf-*.zip', retention-days: 3 }
 
   desktop:
@@ -57,7 +57,7 @@ jobs:
         working-directory: desktop
       - run: npm run ${{ matrix.script }}
         working-directory: desktop
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with: { name: 'pkg-${{ matrix.os }}', path: '${{ matrix.files }}', retention-days: 3 }
 
   android:
@@ -90,7 +90,7 @@ jobs:
           else
             echo "::warning::No signing secrets and no prebuilt APK for $V — the release will have no Android build."
           fi
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with: { name: pkg-android, path: apk/, retention-days: 3, if-no-files-found: ignore }
 
   release:
