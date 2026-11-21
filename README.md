@@ -78,7 +78,7 @@ The build writes these files to `dist/`:
 | `embed/*.b64.txt` | Base64 copies of the kernel and source archive, for hosts that only serve text files. KERF falls back to them automatically |
 
 **Deploy** by copying `dist/` to any static host. To link your public repository from the app,
-build with `KERF_SOURCE_URL=https://github.com/you/kerf npm run build` (official releases use `https://github.com/aaakaind/kerf`).
+build with `KERF_SOURCE_URL=https://github.com/aaakaind/kerf npm run build` (official releases use `https://github.com/aaakaind/kerf`).
 
 Opening `dist/index.html` straight from disk works, but browsers block fetching the kernel over
 `file://`, so CAD falls back to the fast mesh kernel (no fillets, chamfers, shells or STEP). Use
